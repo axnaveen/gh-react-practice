@@ -1,9 +1,22 @@
 name: Deploy Project
 on: [push]
 jobs:
-  test-job:
+  lint-job:
     runs-on: ubuntu-latest
     steps:
-       - name: Download Repository
-         run: echo "Deployment based on push event"
+       - name: Lint Job
+         run: echo "Lint Job"
+  build-job:
+    runs-on: ubuntu-latest
+    needs: lint-job
+    steps:
+       - name: Build Job
+         run: echo "Build Job"
+
+  deploy-job:
+    runs-on: ubuntu-latest
+    needs: lint-job
+    steps:
+       - name: Deploy Job
+         run: echo "Deploy Job"
          
